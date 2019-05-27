@@ -5,8 +5,11 @@ const logger = require('morgan');
 const sassMiddleware = require('node-sass-middleware');
 const path = require('path');
 
+// Import routes
+
 const indexRouter = require('./routes/index');
 
+// Import express
 const app = express();
 
 app.set('views', path.join(__dirname, 'views'));
