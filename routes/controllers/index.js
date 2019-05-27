@@ -1,5 +1,8 @@
 module.exports = (req, res) => {
   res.render('index', {
-    title: 'Express'
+    title: 'Reservation',
+    ingredients: [],
+    drinks: [],
+    taglieri: []
   });
 };
