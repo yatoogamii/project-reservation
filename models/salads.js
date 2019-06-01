@@ -1,7 +1,7 @@
 /* jshint indent: 1 */
 
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('antipasti', {
+	return sequelize.define('salads', {
 		id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
@@ -12,11 +12,16 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.STRING,
 			allowNull: true
 		},
+		ingredients: {
+			type: DataTypes.TEXT,
+			allowNull: true
+		},
 		price: {
 			type: DataTypes.DOUBLE,
 			allowNull: true
-		}
+		},
 	}, {
-		tableName: 'antipasti'
+		tableName: 'salads',
+    timestamps: false
 	});
 };

@@ -7,18 +7,6 @@ const path = require('path');
 
 // base sequelize
 
-const models = require('./models/index.js');
-
-function startApp() {
-  models.drinks.findAll().then(function(drinks) {
-    for( var i = 0; i < drinks.length; i++ ) {
-      console.log(drinks[i].id + " | " + drinks[i].name);
-    }
-  });
-}
-
-startApp();
-
 // Import routes
 
 const indexRouter = require('./routes/index');

@@ -8,6 +8,7 @@ module.exports = function(sequelize, DataTypes) {
 			primaryKey: true
 		}
 	}, {
-		tableName: 'SequelizeMeta'
+		tableName: 'SequelizeMeta',
+    timestamps: false
 	});
 };
