@@ -20,17 +20,28 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: antipasti; Type: TABLE; Schema: public; Owner: elias
+-- Name: SequelizeMeta; Type: TABLE; Schema: public; Owner: elias
 --
 
-CREATE TABLE public.antipasti (
+CREATE TABLE public."SequelizeMeta" (
+    name character varying(255) NOT NULL
+);
+
+
+ALTER TABLE public."SequelizeMeta" OWNER TO elias;
+
+--
+-- Name: antipastis; Type: TABLE; Schema: public; Owner: elias
+--
+
+CREATE TABLE public.antipastis (
     id integer NOT NULL,
     name character varying(80),
     price numeric
 );
 
 
-ALTER TABLE public.antipasti OWNER TO elias;
+ALTER TABLE public.antipastis OWNER TO elias;
 
 --
 -- Name: antipasti_id_seq; Type: SEQUENCE; Schema: public; Owner: elias
@@ -51,7 +62,7 @@ ALTER TABLE public.antipasti_id_seq OWNER TO elias;
 -- Name: antipasti_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: elias
 --
 
-ALTER SEQUENCE public.antipasti_id_seq OWNED BY public.antipasti.id;
+ALTER SEQUENCE public.antipasti_id_seq OWNED BY public.antipastis.id;
 
 
 --
@@ -196,10 +207,10 @@ ALTER SEQUENCE public.pizzas_id_seq OWNED BY public.pizzas.id;
 
 
 --
--- Name: salad; Type: TABLE; Schema: public; Owner: elias
+-- Name: salads; Type: TABLE; Schema: public; Owner: elias
 --
 
-CREATE TABLE public.salad (
+CREATE TABLE public.salads (
     id integer NOT NULL,
     name character varying(80),
     ingredients text,
@@ -207,13 +218,13 @@ CREATE TABLE public.salad (
 );
 
 
-ALTER TABLE public.salad OWNER TO elias;
+ALTER TABLE public.salads OWNER TO elias;
 
 --
--- Name: salades_id_seq; Type: SEQUENCE; Schema: public; Owner: elias
+-- Name: salads_id_seq; Type: SEQUENCE; Schema: public; Owner: elias
 --
 
-CREATE SEQUENCE public.salades_id_seq
+CREATE SEQUENCE public.salads_id_seq
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -222,20 +233,20 @@ CREATE SEQUENCE public.salades_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.salades_id_seq OWNER TO elias;
+ALTER TABLE public.salads_id_seq OWNER TO elias;
 
 --
--- Name: salades_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: elias
+-- Name: salads_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: elias
 --
 
-ALTER SEQUENCE public.salades_id_seq OWNED BY public.salad.id;
+ALTER SEQUENCE public.salads_id_seq OWNED BY public.salads.id;
 
 
 --
--- Name: taglieri; Type: TABLE; Schema: public; Owner: elias
+-- Name: taglieris; Type: TABLE; Schema: public; Owner: elias
 --
 
-CREATE TABLE public.taglieri (
+CREATE TABLE public.taglieris (
     id integer NOT NULL,
     name character varying(80),
     ingredients text,
@@ -243,7 +254,7 @@ CREATE TABLE public.taglieri (
 );
 
 
-ALTER TABLE public.taglieri OWNER TO elias;
+ALTER TABLE public.taglieris OWNER TO elias;
 
 --
 -- Name: taglieri_id_seq; Type: SEQUENCE; Schema: public; Owner: elias
@@ -264,14 +275,14 @@ ALTER TABLE public.taglieri_id_seq OWNER TO elias;
 -- Name: taglieri_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: elias
 --
 
-ALTER SEQUENCE public.taglieri_id_seq OWNED BY public.taglieri.id;
+ALTER SEQUENCE public.taglieri_id_seq OWNED BY public.taglieris.id;
 
 
 --
--- Name: antipasti id; Type: DEFAULT; Schema: public; Owner: elias
+-- Name: antipastis id; Type: DEFAULT; Schema: public; Owner: elias
 --
 
-ALTER TABLE ONLY public.antipasti ALTER COLUMN id SET DEFAULT nextval('public.antipasti_id_seq'::regclass);
+ALTER TABLE ONLY public.antipastis ALTER COLUMN id SET DEFAULT nextval('public.antipasti_id_seq'::regclass);
 
 
 --
@@ -303,24 +314,33 @@ ALTER TABLE ONLY public.pizzas ALTER COLUMN id SET DEFAULT nextval('public.pizza
 
 
 --
--- Name: salad id; Type: DEFAULT; Schema: public; Owner: elias
+-- Name: salads id; Type: DEFAULT; Schema: public; Owner: elias
 --
 
-ALTER TABLE ONLY public.salad ALTER COLUMN id SET DEFAULT nextval('public.salades_id_seq'::regclass);
-
-
---
--- Name: taglieri id; Type: DEFAULT; Schema: public; Owner: elias
---
-
-ALTER TABLE ONLY public.taglieri ALTER COLUMN id SET DEFAULT nextval('public.taglieri_id_seq'::regclass);
+ALTER TABLE ONLY public.salads ALTER COLUMN id SET DEFAULT nextval('public.salads_id_seq'::regclass);
 
 
 --
--- Data for Name: antipasti; Type: TABLE DATA; Schema: public; Owner: elias
+-- Name: taglieris id; Type: DEFAULT; Schema: public; Owner: elias
 --
 
-COPY public.antipasti (id, name, price) FROM stdin;
+ALTER TABLE ONLY public.taglieris ALTER COLUMN id SET DEFAULT nextval('public.taglieri_id_seq'::regclass);
+
+
+--
+-- Data for Name: SequelizeMeta; Type: TABLE DATA; Schema: public; Owner: elias
+--
+
+COPY public."SequelizeMeta" (name) FROM stdin;
+20190601013802-drinks.js
+\.
+
+
+--
+-- Data for Name: antipastis; Type: TABLE DATA; Schema: public; Owner: elias
+--
+
+COPY public.antipastis (id, name, price) FROM stdin;
 1	Arancino Rosso (viande, sauce tomate)	4.50
 2	Arancino Bianco (fromage)	4.50
 3	Mini-Mozzarella panées	4.50
@@ -419,21 +439,18 @@ COPY public.pizzas (id, name, ingredients) FROM stdin;
 
 
 --
--- Data for Name: salad; Type: TABLE DATA; Schema: public; Owner: elias
+-- Data for Name: salads; Type: TABLE DATA; Schema: public; Owner: elias
 --
 
-COPY public.salad (id, name, ingredients, price) FROM stdin;
-1	Caprese	Tomate, Mozzarella di Bufala, Olives noires, Basilic, Huile d’olive	13
-2	Lombarda	Laitue Iceberg, Roquette, Bresaola Punta d’anca, Tomates cerise, Tomates séchées, Parmesan, Citron	16
-3	Mediterranea	Laitue Iceberg, Thon, Seiches grillées, Tomates cerise, Oignon, Câpres, Origan	17
+COPY public.salads (id, name, ingredients, price) FROM stdin;
 \.
 
 
 --
--- Data for Name: taglieri; Type: TABLE DATA; Schema: public; Owner: elias
+-- Data for Name: taglieris; Type: TABLE DATA; Schema: public; Owner: elias
 --
 
-COPY public.taglieri (id, name, ingredients, price) FROM stdin;
+COPY public.taglieris (id, name, ingredients, price) FROM stdin;
 1	Légumes grillés	Poivrons grillés, Artichauts à l'huile, Aubergines confites, Courgettes grillées, Poivrons farcis au thon	15
 2	Charcuteries italiennes	Jambon de Parme de 18 mois, Saucisson piquant Spianata, Mortadelle Bologne, Jambon rôti aux herbes	17
 3	Fromages	Mozzarella di Bufala, Gorgonzola, Scamorza fumée, Parmesan	16
@@ -453,7 +470,7 @@ SELECT pg_catalog.setval('public.antipasti_id_seq', 7, true);
 -- Name: desserts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: elias
 --
 
-SELECT pg_catalog.setval('public.desserts_id_seq', 6, true);
+SELECT pg_catalog.setval('public.desserts_id_seq', 7, true);
 
 
 --
@@ -478,10 +495,10 @@ SELECT pg_catalog.setval('public.pizzas_id_seq', 7, true);
 
 
 --
--- Name: salades_id_seq; Type: SEQUENCE SET; Schema: public; Owner: elias
+-- Name: salads_id_seq; Type: SEQUENCE SET; Schema: public; Owner: elias
 --
 
-SELECT pg_catalog.setval('public.salades_id_seq', 3, true);
+SELECT pg_catalog.setval('public.salads_id_seq', 1, false);
 
 
 --
@@ -492,10 +509,18 @@ SELECT pg_catalog.setval('public.taglieri_id_seq', 5, true);
 
 
 --
--- Name: antipasti antipasti_pkey; Type: CONSTRAINT; Schema: public; Owner: elias
+-- Name: SequelizeMeta SequelizeMeta_pkey; Type: CONSTRAINT; Schema: public; Owner: elias
 --
 
-ALTER TABLE ONLY public.antipasti
+ALTER TABLE ONLY public."SequelizeMeta"
+    ADD CONSTRAINT "SequelizeMeta_pkey" PRIMARY KEY (name);
+
+
+--
+-- Name: antipastis antipasti_pkey; Type: CONSTRAINT; Schema: public; Owner: elias
+--
+
+ALTER TABLE ONLY public.antipastis
     ADD CONSTRAINT antipasti_pkey PRIMARY KEY (id);
 
 
@@ -532,18 +557,18 @@ ALTER TABLE ONLY public.pizzas
 
 
 --
--- Name: salad salades_pkey; Type: CONSTRAINT; Schema: public; Owner: elias
+-- Name: salads salads_pkey; Type: CONSTRAINT; Schema: public; Owner: elias
 --
 
-ALTER TABLE ONLY public.salad
-    ADD CONSTRAINT salades_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.salads
+    ADD CONSTRAINT salads_pkey PRIMARY KEY (id);
 
 
 --
--- Name: taglieri taglieri_pkey; Type: CONSTRAINT; Schema: public; Owner: elias
+-- Name: taglieris taglieri_pkey; Type: CONSTRAINT; Schema: public; Owner: elias
 --
 
-ALTER TABLE ONLY public.taglieri
+ALTER TABLE ONLY public.taglieris
     ADD CONSTRAINT taglieri_pkey PRIMARY KEY (id);
 
 
