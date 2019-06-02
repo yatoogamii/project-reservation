@@ -7,7 +7,7 @@ module.exports = allTable = {
     description: [],
     price: []
   },
-  ingredients: {
+  desserts: {
     id: [],
     name: [],
     description: [],
@@ -27,9 +27,9 @@ table.drinks.findAll().then(function(tableDrinks) {
   }
 });
 
-table.ingredients.findAll().then(function(tableIngredients) {
-  for (const value of tableIngredients) {
-    allTable.ingredients.name.push(value.name);
+table.desserts.findAll().then(function(tableDesserts) {
+  for (const value of tableDesserts) {
+    allTable.desserts.name.push(value.name);
   }
 });
 

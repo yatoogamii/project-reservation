@@ -1,20 +1,34 @@
 extends layout
 
+
 block content
+
   h1 Reservation
 
-  h2 La carte
-  form(action="/" method="POST")
-    label(for="ingredients") Ingredients : 
-    select      
-      each val in ingredients
-        option= val
-    label(for="drinks") Drinks : 
-    select      
-      each val in drinks
-        option= val
-    label(for="taglieri") taglieri : 
-    select      
-      each val in taglieri
-        option= val
+  main
+    h2 La carte
+    h2 Votre commande
+    form(action="/" method="POST" class="form-carte")
+      label(for="taglieri" class="form__label") Taglieri : 
+      select(class="form__select form__select-taglieri")      
+        each val in allTaglieri
+          option= val
+      label(for="desserts" class="form__label form__select-dessert") Desserts : 
+      select(class="form__select")      
+
+        each val in allDesserts
+          option= val
+      label(for="drinks" class="form__label form__select-drink") Drinks : 
+      select(class="form__select")      
+
+        each val in allDrinks
+          option= val
+
+    div(class="command")
+      p Votre taglieri 
+      p #{commandTaglieri}
+      p Votre dessert
+      p #{commandDessert}
+      p Votre boisson
+      p #{commandDrink}
 
