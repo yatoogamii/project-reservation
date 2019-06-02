@@ -43,6 +43,10 @@ main {
 .form-carte .form__select {
   width: 50%;
 }
+.form-carte .form__button {
+  margin: 0.5rem;
+  padding: 0.5rem;
+}
 
 .command {
   width: 50%;
