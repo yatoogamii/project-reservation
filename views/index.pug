@@ -13,22 +13,24 @@ block content
       select(class="form__select form__select-taglieri")      
         each val in allTaglieri
           option= val
-      label(for="desserts" class="form__label form__select-dessert") Desserts : 
-      select(class="form__select")      
+      label(for="desserts" class="form__label") Desserts : 
+      select(class="form__select form__select-dessert")      
 
         each val in allDesserts
           option= val
-      label(for="drinks" class="form__label form__select-drink") Drinks : 
-      select(class="form__select")      
+      label(for="drinks" class="form__label") Drinks : 
+      select(class="form__select form__select-drink")      
 
         each val in allDrinks
           option= val
 
     div(class="command")
       p Votre taglieri 
-      p #{commandTaglieri}
+      p(class="command__taglieri")
       p Votre dessert
-      p #{commandDessert}
+      p(class="command__dessert")
       p Votre boisson
-      p #{commandDrink}
+      p(class="command__drink")
 
+  script
+    include ../public/javascripts/index.js

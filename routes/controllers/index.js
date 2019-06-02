@@ -6,8 +6,5 @@ module.exports = (req, res) => {
     allDesserts: base.desserts.name,
     allDrinks: base.drinks.name,
     allTaglieri: base.taglieris.name,
-    commandDessert: 'test',
-    commandDrink: 'test',
-    commandTaglieri: 'test'
   });
 };
